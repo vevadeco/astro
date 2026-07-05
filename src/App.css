@@ -1,0 +1,544 @@
+/* Astrology App Styles */
+
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--text-h);
+}
+
+.dashboard {
+  text-align: left;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.profile-form-container {
+  padding: 2rem 1.5rem;
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.profile-form-container h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-weight: 500;
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.form-field input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.form-field input:focus {
+  outline: 2px solid var(--accent-border);
+  border-color: var(--accent);
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 0.85rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background: var(--code-bg);
+  color: var(--text-h);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-border);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.btn-danger:hover {
+  background: #fee2e2;
+}
+
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.alert-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.alert-success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.alert-warning {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Daily Summary */
+.daily-summary {
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.daily-summary h2 {
+  margin: 0 0 0.75rem;
+}
+
+.daily-lucky {
+  background: var(--lucky-bg, rgba(34, 197, 94, 0.08));
+  border-color: var(--lucky-border, rgba(34, 197, 94, 0.35));
+}
+
+.daily-caution {
+  background: var(--caution-bg, rgba(239, 68, 68, 0.08));
+  border-color: var(--caution-border, rgba(239, 68, 68, 0.35));
+}
+
+.daily-both {
+  background: var(--both-bg, rgba(234, 179, 8, 0.08));
+  border-color: var(--both-border, rgba(234, 179, 8, 0.35));
+}
+
+.daily-neutral {
+  background: var(--code-bg);
+}
+
+.classification-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.badge-lucky {
+  background: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+}
+
+.badge-caution {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}
+
+.badge-both {
+  background: rgba(234, 179, 8, 0.15);
+  color: #a16207;
+}
+
+.badge-neutral {
+  background: var(--code-bg);
+  color: var(--text);
+}
+
+.guidance {
+  line-height: 1.6;
+  color: var(--text-h);
+}
+
+.relevant-factors {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+/* Factors Panel */
+.factors-panel h2 {
+  margin: 0 0 0.25rem;
+}
+
+.welcome {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.zodiac-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  margin-bottom: 1.5rem;
+}
+
+.zodiac-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-h);
+}
+
+.precision-note,
+.ascendant-note {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--text);
+}
+
+.factors-section {
+  margin-bottom: 1.5rem;
+}
+
+.factors-section h3 {
+  margin: 0 0 0.75rem;
+}
+
+.factor-group {
+  margin-bottom: 1rem;
+}
+
+.factor-group h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.factor-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.factor-group li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.factor-group li strong {
+  color: var(--text-h);
+}
+
+.factor-group li span {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.factor-lucky li strong {
+  color: #15803d;
+}
+
+.factor-unlucky li strong {
+  color: #b91c1c;
+}
+
+/* Calendar */
+.calendar-view h2 {
+  margin: 0 0 1rem;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.month-label {
+  font-weight: 600;
+  color: var(--text-h);
+  min-width: 160px;
+  text-align: center;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.indicator-lucky {
+  background: #22c55e;
+}
+
+.indicator-caution {
+  background: #ef4444;
+}
+
+.dot.both {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e 50%, #ef4444 50%);
+  display: inline-block;
+}
+
+.date-grid {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.weekday-label {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.date-grid-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date-cell {
+  aspect-ratio: 1;
+  border: none;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  position: relative;
+  font: inherit;
+  color: var(--text-h);
+  padding: 0;
+}
+
+.date-cell:nth-child(7n) {
+  border-right: none;
+}
+
+.date-cell.empty {
+  cursor: default;
+  background: var(--code-bg);
+}
+
+.date-cell:hover:not(.empty) {
+  background: var(--accent-bg);
+}
+
+.date-cell.selected {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.date-lucky {
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.date-caution {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.date-both {
+  background: rgba(234, 179, 8, 0.1);
+}
+
+.date-neutral {
+  background: var(--bg);
+}
+
+.day-number {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.month-message {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* Date Detail Popover */
+.date-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.date-detail-popover {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  position: relative;
+  text-align: left;
+}
+
+.popover-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+  line-height: 1;
+}
+
+.summary-block {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+.lucky-block {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.caution-block {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.summary-block h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+}
+
+.summary-block p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-h);
+}
+
+/* Profile Actions */
+.profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .dashboard-header h1,
+  .profile-form-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .date-cell {
+    font-size: 0.8rem;
+  }
+}

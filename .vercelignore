@@ -1,0 +1,6 @@
+.kiro
+src/**/*.test.ts
+src/test
+vitest.config.ts
+eslint.config.js
+*.md
