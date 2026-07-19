@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { PalmCameraCapture } from './PalmCameraCapture';
 import {
   analyzePalm,
   validatePalmImage,
@@ -8,6 +9,7 @@ import {
   type HandSide,
   type PalmReading,
 } from '../services/palmistryService';
+import { isCameraSupported } from '../utils/cameraUtils';
 
 function LineCard({ line }: { line: PalmReading['lines'][number] }) {
   return (
@@ -104,6 +106,7 @@ function PalmReadingResults({ reading, previewUrl }: { reading: PalmReading; pre
 export function PalmUploadPanel() {
   const { profile } = useApp();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraSupported = isCameraSupported();
   const [handSide, setHandSide] = useState<HandSide>('right');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -111,6 +114,7 @@ export function PalmUploadPanel() {
   const [error, setError] = useState<string | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [cameraOpen, setCameraOpen] = useState(false);
 
   const resetPreview = useCallback(() => {
     setPreviewUrl((prev) => {
@@ -174,15 +178,28 @@ export function PalmUploadPanel() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  const handleCameraCapture = (file: File) => {
+    setCameraOpen(false);
+    handleFile(file);
+  };
+
   if (!profile) return null;
 
   return (
     <section className="palm-panel">
+      {cameraOpen && (
+        <PalmCameraCapture
+          handSide={handSide}
+          onCapture={handleCameraCapture}
+          onClose={() => setCameraOpen(false)}
+        />
+      )}
+
       <h2>🤚 Palmistry Reading</h2>
       <p className="palm-intro">
-        Upload a clear photo of your palm to receive a chiromancy reading based on
-        hand shape, major lines, mounts, and your birth profile. Use your right hand
-        for active traits and left hand for innate potential.
+        {cameraSupported
+          ? 'Take a photo of your palm with the in-app camera guide, or upload an existing image. Use your right hand for active traits and left hand for innate potential.'
+          : 'Upload a clear photo of your palm to receive a chiromancy reading based on hand shape, major lines, mounts, and your birth profile.'}
       </p>
 
       <div className="palm-upload-section">
@@ -208,6 +225,20 @@ export function PalmUploadPanel() {
           </div>
         </div>
 
+        {cameraSupported && (
+          <button
+            type="button"
+            className="btn btn-primary palm-take-photo-btn"
+            onClick={() => setCameraOpen(true)}
+          >
+            📸 Take Palm Photo
+          </button>
+        )}
+
+        <div className="palm-upload-divider">
+          <span>{cameraSupported ? 'or upload a photo' : 'Upload photo'}</span>
+        </div>
+
         <div
           className={`palm-dropzone${dragOver ? ' drag-over' : ''}${previewUrl ? ' has-preview' : ''}`}
           onDragOver={(e) => {
@@ -231,6 +262,7 @@ export function PalmUploadPanel() {
             ref={fileInputRef}
             type="file"
             accept={ACCEPTED_PALM_IMAGE_TYPES.join(',')}
+            capture={cameraSupported ? 'environment' : undefined}
             onChange={handleInputChange}
             className="palm-file-input"
             aria-hidden="true"
@@ -239,8 +271,10 @@ export function PalmUploadPanel() {
             <img src={previewUrl} alt="Palm preview" className="palm-dropzone-preview" />
           ) : (
             <div className="palm-dropzone-placeholder">
-              <span className="palm-upload-icon">📷</span>
-              <p>Drop your palm image here or click to browse</p>
+              <span className="palm-upload-icon">🖼️</span>
+              <p className="palm-dropzone-text">
+                {cameraSupported ? 'Tap to choose from gallery' : 'Tap or drop your palm image here'}
+              </p>
               <p className="palm-upload-hint">JPEG, PNG, or WebP — max 5 MB</p>
             </div>
           )}

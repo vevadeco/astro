@@ -1427,6 +1427,207 @@
   line-height: 1.5;
 }
 
+.palm-take-photo-btn {
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+.palm-upload-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.palm-upload-divider::before,
+.palm-upload-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.palm-dropzone-text {
+  margin: 0;
+}
+
+/* ─── Palm Camera Capture ───────────────────────────────────────────────── */
+
+.palm-camera-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.palm-camera-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.palm-camera-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.palm-camera-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.palm-guide-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  width: min(72vw, 280px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.palm-guide-container.mirrored {
+  transform: translate(-50%, -48%) scaleX(-1);
+}
+
+.palm-guide-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+}
+
+.palm-guide-label {
+  margin: 0.75rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.02em;
+}
+
+.palm-camera-top-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem 1rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.palm-camera-close {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.palm-camera-instructions {
+  flex: 1;
+  padding-top: 0.25rem;
+}
+
+.palm-camera-title {
+  margin: 0 0 0.25rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.palm-camera-hint {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.palm-camera-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem max(2rem, env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.palm-capture-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.1s;
+}
+
+.palm-capture-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.palm-capture-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.palm-capture-ring {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.palm-camera-error-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.5rem 1rem max(2rem, env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  text-align: center;
+}
+
+.palm-camera-error-panel p {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 640px) {
   .palm-results-header {
     flex-direction: column;
@@ -1436,6 +1637,49 @@
     width: 100%;
     height: auto;
     max-height: 200px;
+  }
+
+  .dashboard {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .palm-hand-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .palm-hand-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .palm-hand-btn {
+    min-height: 44px;
+  }
+
+  .palm-upload-actions {
+    flex-direction: column;
+  }
+
+  .palm-upload-actions .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .palm-dropzone {
+    min-height: 140px;
+    padding: 1.5rem 1rem;
+  }
+
+  .palm-lines-grid,
+  .palm-mounts-grid,
+  .palm-predictions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .palm-guide-container {
+    width: min(80vw, 260px);
   }
 }
 
