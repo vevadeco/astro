@@ -1091,3 +1091,367 @@
     gap: 0.75rem;
   }
 }
+
+/* ─── Palmistry Panel ───────────────────────────────────────────────────── */
+
+.palm-panel {
+  text-align: left;
+}
+
+.palm-panel h2 {
+  margin: 0 0 0.5rem;
+}
+
+.palm-intro {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.palm-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.palm-hand-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.palm-hand-label {
+  font-weight: 500;
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.palm-hand-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.palm-hand-btn.active {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.palm-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--code-bg);
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.palm-dropzone:hover,
+.palm-dropzone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.palm-dropzone.has-preview {
+  padding: 0.75rem;
+}
+
+.palm-file-input {
+  display: none;
+}
+
+.palm-dropzone-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+}
+
+.palm-upload-icon {
+  font-size: 2rem;
+}
+
+.palm-upload-hint {
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.palm-dropzone-preview {
+  max-width: 100%;
+  max-height: 240px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.palm-upload-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.palm-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.palm-results-header {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--accent-bg);
+}
+
+.palm-preview-wrap {
+  flex-shrink: 0;
+}
+
+.palm-preview-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.palm-hand-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.palm-hand-side {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-left: 0.5rem;
+}
+
+.palm-shape-desc {
+  color: var(--text-h);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.palm-overall-summary {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.palm-card {
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.palm-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.palm-lines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.palm-line-card {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.palm-line-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.palm-line-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.palm-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.palm-line-meta {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+}
+
+.palm-line-explanation {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.palm-mounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.palm-mount-item {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+}
+
+.palm-mount-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.palm-mount-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-h);
+}
+
+.palm-mount-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.palm-mount-badge.prominence-high {
+  background: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+}
+
+.palm-mount-badge.prominence-moderate {
+  background: rgba(234, 179, 8, 0.15);
+  color: #a16207;
+}
+
+.palm-mount-badge.prominence-low {
+  background: rgba(148, 163, 184, 0.15);
+  color: #64748b;
+}
+
+.palm-mount-meaning {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
+.palm-predictions-section {
+  background: rgba(139, 92, 246, 0.04);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.palm-predictions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.palm-prediction-card {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.palm-prediction-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.palm-prediction-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.palm-prediction-icon {
+  font-size: 1.25rem;
+}
+
+.palm-prediction-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-h);
+  margin: 0 0 0.5rem;
+}
+
+.palm-prediction-timeframe {
+  font-size: 0.8rem;
+  color: var(--text);
+  font-style: italic;
+  margin: 0;
+}
+
+.palm-disclaimer {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .palm-results-header {
+    flex-direction: column;
+  }
+
+  .palm-preview-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .palm-mount-badge.prominence-high {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+  }
+
+  .palm-mount-badge.prominence-moderate {
+    background: rgba(234, 179, 8, 0.2);
+    color: #fbbf24;
+  }
+
+  .palm-mount-badge.prominence-low {
+    background: rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+  }
+}

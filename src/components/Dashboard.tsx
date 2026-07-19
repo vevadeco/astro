@@ -6,6 +6,7 @@ import { ProfileActions } from './ProfileActions';
 import { ProfileInputForm } from './ProfileInputForm';
 import { VedicPanel } from './VedicPanel';
 import { IslamicPanel } from './IslamicPanel';
+import { PalmUploadPanel } from './PalmUploadPanel';
 
 export function Dashboard() {
   const [editing, setEditing] = useState(false);
@@ -26,6 +27,7 @@ export function Dashboard() {
       <FactorsPanel />
       <VedicPanel />
       <IslamicPanel />
+      <PalmUploadPanel />
       <CalendarView />
     </div>
   );
