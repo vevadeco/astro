@@ -9,7 +9,7 @@ import {
   type HandSide,
   type PalmReading,
 } from '../services/palmistryService';
-import { isCameraSupported } from '../utils/cameraUtils';
+import { isCameraSupported, requestPalmCameraAccess, cameraAccessErrorMessage, parseCameraAccessError } from '../utils/cameraUtils';
 
 function LineCard({ line }: { line: PalmReading['lines'][number] }) {
   return (
@@ -115,6 +115,8 @@ export function PalmUploadPanel() {
   const [analyzing, setAnalyzing] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [cameraOpen, setCameraOpen] = useState(false);
+  const [cameraLoading, setCameraLoading] = useState(false);
+  const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
 
   const resetPreview = useCallback(() => {
     setPreviewUrl((prev) => {
@@ -179,19 +181,42 @@ export function PalmUploadPanel() {
   };
 
   const handleCameraCapture = (file: File) => {
+    cameraStream?.getTracks().forEach((track) => track.stop());
+    setCameraStream(null);
     setCameraOpen(false);
     handleFile(file);
+  };
+
+  const handleCameraClose = () => {
+    cameraStream?.getTracks().forEach((track) => track.stop());
+    setCameraStream(null);
+    setCameraOpen(false);
+  };
+
+  const handleTakePhoto = async () => {
+    setError(null);
+    setCameraLoading(true);
+    try {
+      const stream = await requestPalmCameraAccess();
+      setCameraStream(stream);
+      setCameraOpen(true);
+    } catch (err) {
+      setError(cameraAccessErrorMessage(parseCameraAccessError(err)));
+    } finally {
+      setCameraLoading(false);
+    }
   };
 
   if (!profile) return null;
 
   return (
     <section className="palm-panel">
-      {cameraOpen && (
+      {cameraOpen && cameraStream && (
         <PalmCameraCapture
+          stream={cameraStream}
           handSide={handSide}
           onCapture={handleCameraCapture}
-          onClose={() => setCameraOpen(false)}
+          onClose={handleCameraClose}
         />
       )}
 
@@ -229,9 +254,10 @@ export function PalmUploadPanel() {
           <button
             type="button"
             className="btn btn-primary palm-take-photo-btn"
-            onClick={() => setCameraOpen(true)}
+            onClick={handleTakePhoto}
+            disabled={cameraLoading}
           >
-            📸 Take Palm Photo
+            {cameraLoading ? 'Requesting camera access…' : '📸 Take Palm Photo'}
           </button>
         )}
 

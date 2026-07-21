@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  captureVideoFrame,
-  palmCameraConstraints,
-} from '../utils/cameraUtils';
+import { captureVideoFrame } from '../utils/cameraUtils';
 import type { HandSide } from '../services/palmistryService';
 
 interface PalmCameraCaptureProps {
+  stream: MediaStream;
   handSide: HandSide;
   onCapture: (file: File) => void;
   onClose: () => void;
@@ -57,50 +55,38 @@ function PalmGuideOverlay({ handSide }: { handSide: HandSide }) {
   );
 }
 
-export function PalmCameraCapture({ handSide, onCapture, onClose }: PalmCameraCaptureProps) {
+export function PalmCameraCapture({ stream, handSide, onCapture, onClose }: PalmCameraCaptureProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
   const [ready, setReady] = useState(false);
   const [capturing, setCapturing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const stopCamera = useCallback(() => {
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
-  }, []);
+    stream.getTracks().forEach((track) => track.stop());
+  }, [stream]);
 
   useEffect(() => {
     let cancelled = false;
+    const video = videoRef.current;
+    if (!video) return;
 
-    async function startCamera() {
+    async function attachStream(v: HTMLVideoElement) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia(palmCameraConstraints());
-        if (cancelled) {
-          stream.getTracks().forEach((track) => track.stop());
-          return;
-        }
-        streamRef.current = stream;
-        const video = videoRef.current;
-        if (video) {
-          video.srcObject = stream;
-          await video.play();
-          setReady(true);
-        }
+        v.srcObject = stream;
+        await v.play();
+        if (!cancelled) setReady(true);
       } catch {
         if (!cancelled) {
-          setError(
-            'Camera access was denied or unavailable. Allow camera permission in your browser settings, or upload a photo instead.',
-          );
+          setError('Could not start the camera preview. Please try again.');
         }
       }
     }
 
-    startCamera();
+    attachStream(video);
     return () => {
       cancelled = true;
-      stopCamera();
     };
-  }, [stopCamera]);
+  }, [stream]);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -167,6 +153,11 @@ export function PalmCameraCapture({ handSide, onCapture, onClose }: PalmCameraCa
         </div>
       ) : (
         <div className="palm-camera-controls">
+          {!ready && (
+            <p className="palm-camera-loading" aria-live="polite">
+              Starting camera…
+            </p>
+          )}
           <button
             type="button"
             className="palm-capture-btn"
